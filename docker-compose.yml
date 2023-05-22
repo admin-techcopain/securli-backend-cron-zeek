@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  securli-backend-cron:
+    container_name: securli-backend-cron
+    build:
+      context: .
+      dockerfile: DockerFile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3800:3800
+    environment:
+      DB_HOST: mysqldb
+      DB_PORT: '3306'
+      DB_USERNAME: 'admin'
+      DB_PASSWORD: 'x8vU09wr9drI*=L_16lT'
+      DB_DATABASE: 'securli'
+      NODE_DOCKER_PORT: '3000'
+      SFTP_URL: 'sftp://administrator:Admin123@sftp'
+    networks:
+      - app-network
+networks:
+  app-network:
+    name: node-securily_app-network
+    external: true
+                                              
