@@ -76,7 +76,7 @@ class SFTPClient {
   async upload_file(fileName, stringFileData) {
 
     try {
-      await this.client.fastPut(`${stringFileData}`, `/upload/qa/cis/${fileName}`);
+      await this.client.fastPut(`${stringFileData}`, `/upload/cis/${fileName}`);
 
       console.log('File uploaded successfully',stringFileData,fileName);
 

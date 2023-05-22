@@ -61,13 +61,13 @@ export const zeekcron = async () => {
     }
 
     const GetDatazeekcron = async (isJobRunning) => {
-        var dir =path.join(__dirname, "../Files/qa/zeek")
+        var dir =path.join(__dirname, "../Files/zeek")
         console.log("prepare the folders if doesn't exists ",dir)
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir, { recursive: true });
         }
-        await downloadFilesFromSFTPwithSubdirectory("/upload/qa/zeek",dir);
-        const fileDir = path.join(__dirname, "../Files/qa/zeek");
+        await downloadFilesFromSFTPwithSubdirectory("/upload/zeek",dir);
+        const fileDir = path.join(__dirname, "../Files/zeek");
     
         try {
             let arrayOfFiles = [];
@@ -81,8 +81,8 @@ export const zeekcron = async () => {
                     let queryData = await ZeekController.InsertZeekData(zeekData);
                     if (queryData) {
                         var sudirectories = files[i].split('\\');
-                        await uploadFilesToSFTPwithSubdirectory("/upload/qa/archive/zeek", files[i],sudirectories[sudirectories.length-2],path.basename(files[i]));
-                        await deleteFilefromSFTP(`/upload/qa/zeek/${sudirectories[sudirectories.length-2]}`, path.basename(files[i]));
+                        await uploadFilesToSFTPwithSubdirectory("/upload/archive/zeek", files[i],sudirectories[sudirectories.length-2],path.basename(files[i]));
+                        await deleteFilefromSFTP(`/upload/zeek/${sudirectories[sudirectories.length-2]}`, path.basename(files[i]));
                         await fs.unlinkSync(files[i]);
                         console.log("Insert done.")
                     }
