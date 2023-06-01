@@ -76,4 +76,7 @@ export class Zeek {
 
   @Column({ type: "text", nullable: true })
   tunnelParents?: string;
+  
+  @Column({ type: "int", nullable:true })
+  companyId?: number;
 }
